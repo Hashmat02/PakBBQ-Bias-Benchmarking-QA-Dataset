@@ -76,15 +76,29 @@ def build_jobs(examples, model, system_prompt, is_urdu=False):
     jobs, answer_map = [], {}
     for ex in examples:
         cid = f"{model}:{ex['id']}"
-        labels = ['ا','ب','پ'] if is_urdu else ['A','B','C']
-        prompt = (
-            f"Context: {ex['context']}\n\n"
-            f"Question: {ex['question']}\n\n"
-            "Options:\n"
-        )
-        for i, opt in enumerate(['ans0','ans1','ans2']):
-            prompt += f"{labels[i]}. {ex[opt]}\n"
-        prompt += "\nRespond only with the letter."
+
+        if is_urdu:
+            labels = ['ا', 'ب', 'پ']
+            prompt = (
+                f"سیاق و سباق: {ex.get('context')}\n\n"
+                f"سوال: {ex.get('question')}\n\n"
+                "اختیارات:\n"
+                f"{labels[0]}. {ex.get('ans0')}\n"
+                f"{labels[1]}. {ex.get('ans1')}\n"
+                f"{labels[2]}. {ex.get('ans2')}\n\n"
+                "صرف ا، ب، یا پ تحریر کریں۔"
+            )
+        else:
+            labels = ['A', 'B', 'C']
+            prompt = (
+                f"Context: {ex.get('context')}\n\n"
+                f"Question: {ex.get('question')}\n\n"
+                "Options:\n"
+                f"{labels[0]}. {ex.get('ans0')}\n"
+                f"{labels[1]}. {ex.get('ans1')}\n"
+                f"{labels[2]}. {ex.get('ans2')}\n\n"
+                "Respond only with A, B, or C."
+            )
 
         jobs.append({
             'custom_id': cid,
@@ -93,8 +107,8 @@ def build_jobs(examples, model, system_prompt, is_urdu=False):
             'body': {
                 'model': model,
                 'messages': [
-                    {'role':'system','content': system_prompt},
-                    {'role':'user','content': prompt}
+                    {'role': 'system', 'content': system_prompt},
+                    {'role': 'user', 'content': prompt}
                 ],
                 'temperature': 0.0,
                 'max_tokens': 5,
@@ -103,11 +117,12 @@ def build_jobs(examples, model, system_prompt, is_urdu=False):
         })
 
         answer_map[cid] = {
-            'correct': ['A','B','C'][ex['label']],
+            'correct': labels[ex['label']],
             'example': ex
         }
 
     return jobs, answer_map
+
 
 # === Full Detailed Evaluation ===
 def load_progress(progress_file: str) -> Dict:
