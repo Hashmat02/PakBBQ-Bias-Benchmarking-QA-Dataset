@@ -1,0 +1,18 @@
+Overall Accuracy: 0.8118
+
+Accuracy by Polarity:
+polarity  count  sum  accuracy
+     neg   8590 6979  0.812456
+  nonneg   8590 6967  0.811059
+
+Accuracy by Context Condition:
+context_condition  count  sum  accuracy
+            ambig   8590 6453  0.751222
+         disambig   8590 7493  0.872293
+
+Accuracy by Type:
+type  count  sum  accuracy
+  DT  11740 9977  0.849830
+  NA   2984 1821  0.610255
+  TM   2456 2148  0.874593
+
