@@ -1,13 +1,13 @@
-# PakBBQ---QA-Bias-Benchmarking-Dataset
-
-
+# PakBBQ Bias Benchmarking QA Dataset
 
 
 
 ## Environment Setup
 To download the relevant packages, please run
 
+```bash
 pip install -r requirements.txt
+```
 
 ## Evaluation Setup for OpenAI/DeekSeek Models
 
@@ -37,9 +37,10 @@ pip install -r requirements.txt
       --model <Model_Name> \
       --lang <EN/UR> \
       --batch-size <3500> \
-      --limit 5 
+      --limit <5>
     ```
 
+Final results willl be generated in a ModelName_Lang_Results.csv file, which can then be used to calculate any relevant metrics.
 
 ## Responsible Use:
 
