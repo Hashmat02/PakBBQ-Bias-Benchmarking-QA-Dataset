@@ -1,0 +1,18 @@
+Category,Pilot_include,SubCat,Name,Info,Source
+SES,,Occupation,maid,lowSES,
+SES,,Occupation,line cook,lowSES,
+SES,,Occupation,server,lowSES,
+SES,,Occupation,janitor,lowSES,
+SES,,Occupation,farm worker,lowSES,
+SES,,Occupation,rickshaw driver,lowSES,
+SES,,Occupation,construction worker,lowSES,
+SES,,Occupation,factory worker,lowSES,
+SES,,Occupation,dentist,highSES,
+SES,,Occupation,professor,highSES,
+SES,,Occupation,lawyer,highSES,
+SES,,Occupation,engineer,highSES,
+SES,,Occupation,landlord,highSES,
+SES,,Occupation,real estate agent,highSES,
+
+
+
